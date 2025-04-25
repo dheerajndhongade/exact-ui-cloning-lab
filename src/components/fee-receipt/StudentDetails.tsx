@@ -1,6 +1,13 @@
-import React from "react";
 
-const StudentDetails: React.FC = () => {
+import React from "react";
+import { FeeData } from "@/types/fee";
+
+interface StudentDetailsProps {
+  feeData: FeeData;
+  onInputChange: (field: keyof FeeData, value: any) => void;
+}
+
+const StudentDetails: React.FC<StudentDetailsProps> = ({ feeData, onInputChange }) => {
   return (
     <div className="bg-[rgba(243,243,250,1)] mx-3 pl-[30px] pr-20 py-8 rounded-[5px] max-md:max-w-full max-md:mr-2.5 max-md:px-5">
       <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
@@ -12,7 +19,7 @@ const StudentDetails: React.FC = () => {
               </div>
               <div className="flex flex-col items-stretch">
                 <div className="font-semibold">
-                  <span className="font-normal">Student Name:</span> Jayati Dave
+                  <span className="font-normal">Student Name:</span> {feeData.studentName || 'Jayati Dave'}
                 </div>
                 <div className="font-normal mt-[17px]">
                   Class: <span className="font-semibold">4-A</span>
@@ -21,8 +28,11 @@ const StudentDetails: React.FC = () => {
             </div>
             <div className="flex w-[193px] max-w-full flex-col items-stretch text-base mr-[39px] mt-[31px] max-md:mr-2.5">
               <div className="font-semibold">Academic Year</div>
-              <div className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] flex items-stretch gap-5 font-normal justify-between mt-[13px] px-[19px] py-[9px] rounded-[5px]">
-                <div>2023-24 | 3-A</div>
+              <div 
+                className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] flex items-stretch gap-5 font-normal justify-between mt-[13px] px-[19px] py-[9px] rounded-[5px] cursor-pointer"
+                onClick={() => onInputChange('academicYear', '2023-24 | 3-A')}
+              >
+                <div>{feeData.academicYear || '2023-24 | 3-A'}</div>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/44950043ed0547b680db2d9b855525e8/ab96bb753a5df646f25098052f920c998a6f9e24?placeholderIfAbsent=true"
                   alt="Dropdown icon"
@@ -42,8 +52,11 @@ const StudentDetails: React.FC = () => {
               Has siblings: <span className="font-semibold">Yes</span>
             </div>
             <div className="text-base mt-[30px]">Select Sibling</div>
-            <div className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] flex w-[223px] max-w-full items-stretch gap-5 text-base font-normal justify-between mt-[13px] px-5 py-[9px] rounded-[5px]">
-              <div>Name Surname</div>
+            <div 
+              className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] flex w-[223px] max-w-full items-stretch gap-5 text-base font-normal justify-between mt-[13px] px-5 py-[9px] rounded-[5px] cursor-pointer"
+              onClick={() => onInputChange('selectedSibling', 'Name Surname')}
+            >
+              <div>{feeData.selectedSibling || 'Name Surname'}</div>
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/44950043ed0547b680db2d9b855525e8/ab96bb753a5df646f25098052f920c998a6f9e24?placeholderIfAbsent=true"
                 alt="Dropdown icon"

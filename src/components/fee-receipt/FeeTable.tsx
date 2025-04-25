@@ -1,6 +1,13 @@
 import React from "react";
+import { FeeData } from "@/types/fee";
+import { Input } from "@/components/ui/input";
 
-const FeeTable: React.FC = () => {
+interface FeeTableProps {
+  feeData: FeeData;
+  onReceivedAmountChange: (itemId: string, amount: number) => void;
+}
+
+const FeeTable: React.FC<FeeTableProps> = ({ feeData, onReceivedAmountChange }) => {
   return (
     <>
       <div className="bg-[rgba(249,249,249,1)] flex w-[1811px] max-w-full items-center gap-[40px_72px] ml-[22px] mr-[13px] pl-[21px] pr-[79px] py-1 max-md:mr-2.5 max-md:px-5">
@@ -40,8 +47,18 @@ const FeeTable: React.FC = () => {
           <div className="text-[rgba(250,0,0,1)] mt-[31px]">8784</div>
         </div>
         <div className="self-stretch">
-          <div className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] flex shrink-0 h-[37px] rounded-[5px]" />
-          <div className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] flex shrink-0 h-[37px] mt-[13px] rounded-[5px]" />
+          <Input 
+            type="number"
+            className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] h-[37px] w-[120px] rounded-[5px]"
+            value={feeData.receivedAmounts['1'] || ''}
+            onChange={(e) => onReceivedAmountChange('1', parseFloat(e.target.value) || 0)}
+          />
+          <Input 
+            type="number"
+            className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] h-[37px] w-[120px] rounded-[5px] mt-[13px]"
+            value={feeData.receivedAmounts['2'] || ''}
+            onChange={(e) => onReceivedAmountChange('2', parseFloat(e.target.value) || 0)}
+          />
         </div>
       </div>
 

@@ -101,4 +101,3 @@ const PaymentOptions: React.FC<PaymentOptionsProps> = ({
 };
 
 export default PaymentOptions;
-

@@ -103,4 +103,3 @@ const FeeReceipt: React.FC = () => {
 };
 
 export default FeeReceipt;
-

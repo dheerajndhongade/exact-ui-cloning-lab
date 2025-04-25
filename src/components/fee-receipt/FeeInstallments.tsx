@@ -1,6 +1,13 @@
-import React from "react";
 
-const FeeInstallments: React.FC = () => {
+import React from "react";
+import { FeeData } from "@/types/fee";
+
+interface FeeInstallmentsProps {
+  feeData: FeeData;
+  onInputChange: (field: keyof FeeData, value: any) => void;
+}
+
+const FeeInstallments: React.FC<FeeInstallmentsProps> = ({ feeData, onInputChange }) => {
   return (
     <>
       <div className="bg-[rgba(249,249,249,1)] flex w-[1811px] max-w-full gap-5 flex-wrap justify-between ml-[22px] mr-[13px] mt-2.5 pl-[21px] pr-[79px] py-[3px] rounded-[5px_5px_0px_0px] max-md:mr-2.5 max-md:px-5">
@@ -14,7 +21,12 @@ const FeeInstallments: React.FC = () => {
         </div>
         <div className="flex items-stretch gap-[22px] text-base text-[rgba(8,34,83,1)] font-semibold">
           <div className="grow my-auto">Enter total amount received:</div>
-          <div className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] flex w-[120px] shrink-0 h-[37px] rounded-[5px]" />
+          <input 
+            type="number"
+            className="bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.1)] w-[120px] h-[37px] rounded-[5px] px-2"
+            value={feeData.totalAmountReceived}
+            onChange={(e) => onInputChange('totalAmountReceived', parseFloat(e.target.value) || 0)}
+          />
         </div>
       </div>
       <div className="flex w-full max-w-[1770px] items-stretch gap-[40px_50px] text-[rgba(8,34,83,1)] flex-wrap ml-[39px] mr-[37px] mt-[19px] max-md:max-w-full max-md:mr-2.5">

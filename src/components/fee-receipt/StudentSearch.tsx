@@ -1,6 +1,13 @@
-import React from "react";
 
-const StudentSearch: React.FC = () => {
+import React from "react";
+import { FeeData } from "@/types/fee";
+
+interface StudentSearchProps {
+  feeData: FeeData;
+  onInputChange: (field: keyof FeeData, value: any) => void;
+}
+
+const StudentSearch: React.FC<StudentSearchProps> = ({ feeData, onInputChange }) => {
   return (
     <div className="self-stretch flex w-full items-stretch gap-5 flex-wrap justify-between mt-5 max-md:max-w-full">
       <div className="flex items-stretch gap-2.5 flex-wrap">
@@ -38,7 +45,10 @@ const StudentSearch: React.FC = () => {
                 />
               </div>
             </div>
-            <button className="bg-[rgba(8,34,83,1)] text-lg text-white font-medium whitespace-nowrap text-center px-9 py-[13px] rounded-md max-md:px-5">
+            <button 
+              className="bg-[rgba(8,34,83,1)] text-lg text-white font-medium whitespace-nowrap text-center px-9 py-[13px] rounded-md max-md:px-5"
+              onClick={() => onInputChange('studentName', 'Jayati Dave')}
+            >
               Search
             </button>
           </div>
